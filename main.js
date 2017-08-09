@@ -8,7 +8,7 @@ songFinder.addEventListener("keydown", function(e) {
 
   if (event.keyCode === enterKeyCode) {
     axios.get(url).then(function(response) {
-      let data = response.data.results;
+      let data = response.resultCount.results;
       data.forEach(function(data) {
         let searchResults = ``;
         searchResults = ``;
