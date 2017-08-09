@@ -36,29 +36,3 @@ input:focus {
   width: 80%;
   justify-content: space-around;
 }
-
-.recipe {
-  display: flex;
-  margin: 2rem 0 2rem 0;
-  border: 1px solid black;
-  flex-basis: 23%;
-  height: 15rem;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-.recipeTitle {
-  color: #f2f1e8;
-  font-weight: 500;
-  font-size: 1.1rem;
-  background-color: #b56231;
-  padding: .3rem;
-  margin: 1rem;
-  align-self: flex-end;
-  opacity: .8;
-}
-
-a {
-  color: #f2f1e8;
-  text-decoration: none;
-}
