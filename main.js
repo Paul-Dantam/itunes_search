@@ -2,8 +2,8 @@ let songFinder = document.querySelector("input");
 let songContainer = document.querySelector(".container");
 let formSubmitter = document.querySelector(".submit");
 let audioPlayer = document.querySelector("#music");
-let audioSource = document.querySelectorAll(".albumArt");
 let iTunesSource = document.querySelector(".m4asrc");
+let currentSong = document.querySelector(".currentSong");
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~ search funtionality and grid population ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -17,25 +17,24 @@ formSubmitter.addEventListener("click", function(e) {
     data.forEach(function(data) {
       let searchResults = ``;
 
-      searchResults = `<div class ="returnItem"><img class="albumArt" value="${data.previewUrl}" src="${data.artworkUrl100}">
+      searchResults = `<div class ="returnItem"><img class="albumArt" title="${data.trackName}" value="${data.previewUrl}" src="${data.artworkUrl100}">
         <div class="songTitle">${data.trackName}</div>
-        <div class="bandName"><a href="${data.artistViewUrl}">${data.artistName}</a></div>
+        <div class="bandName"><a class="bandName" href="${data.artistViewUrl}">${data.artistName}</a></div>
         </div>
         `;
       songContainer.innerHTML += searchResults;
-      audioSource += document.querySelectorAll(".albumArt");
     });
   });
 });
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~audio player experiment~~~~~~~~~~~~~~~~~~~~~~~~~
 
-var music = document.getElementById("music");
-var duration = music.duration;
-var pButton = document.getElementById("pButton");
-var playhead = document.getElementById("playhead");
-var timeline = document.getElementById("timeline");
-var timelineWidth = timeline.offsetWidth - playhead.offsetWidth;
+let music = document.getElementById("music");
+let duration = music.duration;
+let pButton = document.getElementById("pButton");
+let playhead = document.getElementById("playhead");
+let timeline = document.getElementById("timeline");
+let timelineWidth = timeline.offsetWidth - playhead.offsetWidth;
 
 pButton.addEventListener("click", play);
 
@@ -57,7 +56,7 @@ function clickPercent(event) {
 playhead.addEventListener("mousedown", mouseDown, false);
 window.addEventListener("mouseup", mouseUp, false);
 
-var onplayhead = false;
+let onplayhead = false;
 
 function mouseDown() {
   onplayhead = true;
@@ -75,7 +74,7 @@ function mouseUp(event) {
   onplayhead = false;
 }
 function moveplayhead(event) {
-  var newMargLeft = event.clientX - getPosition(timeline);
+  let newMargLeft = event.clientX - getPosition(timeline);
 
   if (newMargLeft >= 0 && newMargLeft <= timelineWidth) {
     playhead.style.marginLeft = newMargLeft + "px";
@@ -89,7 +88,7 @@ function moveplayhead(event) {
 }
 
 function timeUpdate() {
-  var playPercent = timelineWidth * (music.currentTime / duration);
+  let playPercent = timelineWidth * (music.currentTime / duration);
   playhead.style.marginLeft = playPercent + "px";
   if (music.currentTime == duration) {
     pButton.className = "";
@@ -125,6 +124,9 @@ function getPosition(el) {
 songContainer.addEventListener("click", function(e) {
   let newTrack = e.target.getAttribute("value");
   iTunesSource.setAttribute("src", newTrack);
+  let currentlyPlaying = e.target.getAttribute("title");
+  currentSong.innerHTML = currentlyPlaying;
   audioPlayer.load();
   audioPlayer.play();
+  pButton.className = "pause";
 });
