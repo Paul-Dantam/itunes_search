@@ -1,5 +1,10 @@
 body {
   margin: 0;
+  background-image: url("./images/Plain-Dark-Gray-Background.jpg");
+}
+
+.title {
+  font-size: 3rem;
 }
 
 input {
@@ -15,7 +20,7 @@ input:focus {
   outline: none;
   width: 35vw;
   border: 2px solid black;
-  box-shadow: 2px 2px 10px #719ece;
+  box-shadow: 2px 2px 10px darkslategray;
 }
 
 .wrapper {
@@ -56,4 +61,47 @@ input:focus {
 
 .albumArt {
   padding: 1rem 2rem .3rem 2rem;
+}
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~Audio Player~~~~~~~~~~~~~~~~~~~~~~*/
+
+#audioplayer {
+  width: 480px;
+  height: 60px;
+  margin: 50px auto auto auto;
+  border: 5px solid;
+}
+
+#pButton {
+  height: 60px;
+  width: 60px;
+  border: none;
+  background-size: 50% 50%;
+  background-repeat: no-repeat;
+  background-position: center;
+  float: left;
+  outline: none;
+}
+
+.play {
+  background: url('http://www.alexkatz.me/codepen/img/play.png');
+}
+.pause {
+  background: url('http://www.alexkatz.me/codepen/img/pause.png');
+}
+
+#timeline {
+  width: 400px;
+  height: 20px;
+  margin-top: 20px;
+  float: left;
+  border-radius: 15px;
+  background: rgba(0, 0, 0, .8);
+}
+#playhead {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  margin-top: 1px;
+  background: rgba(120, 120, 120, 1);
 }
