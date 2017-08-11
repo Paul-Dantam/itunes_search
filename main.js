@@ -19,7 +19,7 @@ formSubmitter.addEventListener("click", function(e) {
 
       searchResults = `<div class ="returnItem"><img class="albumArt" title="${data.trackName}" value="${data.previewUrl}" src="${data.artworkUrl100}">
         <div class="songTitle">${data.trackName}</div>
-        <div class="bandName"><a class="bandName" href="${data.artistViewUrl}">${data.artistName}</a></div>
+        <div class="bandName"><a class="bandNameLink" href="${data.artistViewUrl}">${data.artistName}</a></div>
         </div>
         `;
       songContainer.innerHTML += searchResults;
@@ -125,7 +125,7 @@ songContainer.addEventListener("click", function(e) {
   let newTrack = e.target.getAttribute("value");
   iTunesSource.setAttribute("src", newTrack);
   let currentlyPlaying = e.target.getAttribute("title");
-  currentSong.innerHTML = currentlyPlaying;
+  currentSong.innerHTML = `<span>Now Playing: </span>` + currentlyPlaying;
   audioPlayer.load();
   audioPlayer.play();
   pButton.className = "pause";
