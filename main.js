@@ -5,29 +5,7 @@ let audioPlayer = document.querySelector("#music");
 let iTunesSource = document.querySelector(".m4asrc");
 let currentSong = document.querySelector(".currentSong");
 
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~ search funtionality and grid population ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-formSubmitter.addEventListener("click", function(e) {
-  let url =
-    "https://itunes.apple.com/search?term=" + songFinder.value + "&entity=song";
-  e.preventDefault();
-  axios.get(url).then(function(response) {
-    songContainer.innerHTML = ``;
-    let data = response.data.results;
-    data.forEach(function(data) {
-      let searchResults = ``;
-
-      searchResults = `<div class ="returnItem"><img class="albumArt" title="${data.trackName}" value="${data.previewUrl}" src="${data.artworkUrl100}">
-        <div class="songTitle">${data.trackName}</div>
-        <div class="bandName"><a class="bandNameLink" href="${data.artistViewUrl}">${data.artistName}</a></div>
-        </div>
-        `;
-      songContainer.innerHTML += searchResults;
-    });
-  });
-});
-
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~audio player experiment~~~~~~~~~~~~~~~~~~~~~~~~~
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~audio player~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 let music = document.getElementById("music");
 let duration = music.duration;
@@ -129,4 +107,26 @@ songContainer.addEventListener("click", function(e) {
   audioPlayer.load();
   audioPlayer.play();
   pButton.className = "pause";
+});
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~ search funtionality and grid population ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+formSubmitter.addEventListener("click", function(e) {
+  let url =
+    "https://itunes.apple.com/search?term=" + songFinder.value + "&entity=song";
+  e.preventDefault();
+  axios.get(url).then(function(response) {
+    songContainer.innerHTML = ``;
+    let data = response.data.results;
+    data.forEach(function(data) {
+      let searchResults = ``;
+
+      searchResults = `<div class ="returnItem"><img class="albumArt" title="${data.trackName}" value="${data.previewUrl}" src="${data.artworkUrl100}">
+        <div class="songTitle">${data.trackName}</div>
+        <div class="bandName"><a class="bandNameLink" href="${data.artistViewUrl}">${data.artistName}</a></div>
+        </div>
+        `;
+      songContainer.innerHTML += searchResults;
+    });
+  });
 });
